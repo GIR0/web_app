@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Elastic Properties</title>
+{% endblock %}
+
+{% block body %}
+<div class="content">
+    <h1 style="text-align: center">Results</h1>
+    <table>
+        <tr>
+            <th>material_id</th>
+            <th>formula</th>
+            <th>Bulk Modulus K_VRH (logGPa)</th>
+            <th>Shear Modulus G_VRH (logGPa)</th>
+            <th>poisson ratio</th>
+        </tr>
+        <tr>
+            {% for value in result %}
+                <td>{{ value }}</td>
+            {% endfor %}
+        </tr>
+    </table>
+    <div class="form">
+        <form action="/">
+            <input type="submit" value="back" />
+        </form>
+    </div>
+</div>
+{% endblock %}

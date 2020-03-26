@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Elastic Properties</title>
+{% endblock %}
+
+{% block body %}
+<div class="content">
+    <h1 style="text-align: center">AI prediction for Elastic Properties</h1>
+    <div class="form">
+        <form action="/" method="POST">
+            <input type="text" name="content" id="content">
+            <input type="submit" value="predict">
+        </form>
+    </div>
+    <div style="position: relative">
+        <p style="position: fixed; bottom: 0; width:100%; text-align: center">
+            <a href="/credits">Credits</a>
+        </p>
+    </div>
+</div>
+{% endblock %}
