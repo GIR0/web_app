@@ -1,5 +1,5 @@
 from flask import Flask, render_template, url_for, request, redirect
-from processing import model_prediction
+from helper import get_result
 
 app = Flask(__name__)
 
@@ -8,12 +8,11 @@ app = Flask(__name__)
 def index():
     if request.method == 'POST':
         material_id = request.form['content']
-
-        try:
+        print(material_id)
+        if material_id == '':
+            return redirect('/')
+        else:
             return redirect(f'/predict/{material_id}')
-        except:
-            return 'Invalid material_id'
-
     else:
         return render_template('index.html')
 
@@ -23,9 +22,18 @@ def predict(id):
     if request.method == 'POST':
         return redirect('/')
     else:
-        result = model_prediction(id)
-        print(result)
-        return render_template('predict.html', result=result)
+        try:
+            result, pred = get_result(id)
+            return render_template('predict.html', result=result, pred=pred)
+        except:
+            return redirect('/invalid_id')
+
+@app.route('/invalid_id', methods=['GET', 'POST'])
+def invalid_id():
+    if request.method == 'POST':
+        return redirect('/')
+    else:
+        return render_template('invalid.html')
 
 @app.route('/credits', methods=['GET', 'POST'])
 def credits():

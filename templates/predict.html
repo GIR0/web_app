@@ -6,13 +6,23 @@
 
 {% block body %}
 <div class="content">
-    <h1 style="text-align: center">Results</h1>
+    {% if pred %}
+        <h1 style="text-align: center">Data Unavailable</h1>
+        <h3 style="text-align: center">Predictions</h3>
+    {% else %}
+        <h1 style="text-align: center">Results</h1>
+    {% endif %}
     <table>
         <tr>
             <th>material_id</th>
             <th>formula</th>
-            <th>Bulk Modulus K_VRH (logGPa)</th>
-            <th>Shear Modulus G_VRH (logGPa)</th>
+            {% if pred %}
+                <th>Bulk Modulus K_VRH (logGPa)</th>
+                <th>Shear Modulus G_VRH (logGPa)</th>
+            {% else %}
+            <th>Bulk Modulus K_VRH (GPa)</th>
+            <th>Shear Modulus G_VRH (GPa)</th>
+            {% endif %}
             <th>poisson ratio</th>
         </tr>
         <tr>
